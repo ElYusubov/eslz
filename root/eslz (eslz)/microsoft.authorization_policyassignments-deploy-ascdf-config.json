@@ -1,0 +1,81 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "AzOps"
+    }
+  },
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/policyAssignments",
+      "name": "Deploy-ASCDF-Config",
+      "apiVersion": "2021-06-01",
+      "location": "centralus",
+      "identity": {
+        "PrincipalId": "b98b2a4c-1ec4-43a8-a6d0-96be16dd91b5",
+        "TenantId": "dfb2f2b1-ff74-45e3-8b56-337f9a37f620",
+        "Type": "SystemAssigned"
+      },
+      "properties": {
+        "Scope": "/providers/Microsoft.Management/managementGroups/eslz",
+        "NotScopes": null,
+        "DisplayName": "Deploy Microsoft Defender for Cloud configuration",
+        "Description": "Deploy Microsoft Defender for Cloud and Security Contacts",
+        "EnforcementMode": "Default",
+        "PolicyDefinitionId": "/providers/Microsoft.Management/managementGroups/eslz/providers/Microsoft.Authorization/policySetDefinitions/Deploy-ASCDF-Config",
+        "Parameters": {
+          "emailSecurityContact": {
+            "value": "odl_user_525855@azurehol1520.onmicrosoft.com"
+          },
+          "logAnalytics": {
+            "value": "/subscriptions/63d16be5-034d-48e1-92db-ee0ef0b14b8b/resourceGroups/eslz-mgmt/providers/Microsoft.OperationalInsights/workspaces/eslz-law"
+          },
+          "ascExportResourceGroupName": {
+            "value": "eslz-asc-export"
+          },
+          "ascExportResourceGroupLocation": {
+            "value": "centralus"
+          },
+          "enableAscForServers": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForSql": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForAppServices": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForStorage": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForRegistries": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForKeyVault": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForSqlOnVm": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForKubernetes": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForArm": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForDns": {
+            "value": "DeployIfNotExists"
+          },
+          "enableAscForOssDb": {
+            "value": "DeployIfNotExists"
+          }
+        },
+        "NonComplianceMessages": null
+      }
+    }
+  ],
+  "outputs": {}
+}

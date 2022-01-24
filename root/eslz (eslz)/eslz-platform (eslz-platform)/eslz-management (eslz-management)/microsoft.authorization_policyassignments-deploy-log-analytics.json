@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "AzOps"
+    }
+  },
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/policyAssignments",
+      "name": "Deploy-Log-Analytics",
+      "apiVersion": "2021-06-01",
+      "location": "centralus",
+      "identity": {
+        "PrincipalId": "dbe98b33-6f35-430c-8a80-b289391b87d1",
+        "TenantId": "dfb2f2b1-ff74-45e3-8b56-337f9a37f620",
+        "Type": "SystemAssigned"
+      },
+      "properties": {
+        "Scope": "/providers/Microsoft.Management/managementGroups/eslz-management",
+        "NotScopes": null,
+        "DisplayName": "Configure Log Analytics workspace and automation account to centralize logs and monitoring",
+        "Description": "Deploy resource group containing Log Analytics workspace and linked automation account to centralize logs and monitoring. The automation account is aprerequisite for solutions like Updates and Change Tracking.",
+        "EnforcementMode": "Default",
+        "PolicyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/8e3e61b3-0b32-22d5-4edf-55f87fdb5955",
+        "Parameters": {
+          "workspaceName": {
+            "value": "eslz-law"
+          },
+          "automationAccountName": {
+            "value": "eslz-aauto"
+          },
+          "workspaceRegion": {
+            "value": "centralus"
+          },
+          "automationRegion": {
+            "value": "centralus"
+          },
+          "rgName": {
+            "value": "eslz-mgmt"
+          },
+          "dataRetention": {
+            "value": "30"
+          }
+        },
+        "NonComplianceMessages": null
+      }
+    }
+  ],
+  "outputs": {}
+}

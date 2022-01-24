@@ -1,0 +1,89 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/tenantDeploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "AzOps"
+    }
+  },
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Management/managementGroups",
+      "name": "eslz-platform",
+      "apiVersion": "2021-04-01",
+      "scope": "/",
+      "properties": {
+        "displayName": "eslz-platform",
+        "details": {
+          "parent": {
+            "id": "/providers/Microsoft.Management/managementGroups/eslz"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2020-10-01",
+      "name": "AzOps-microsoft.management_managementgroups-nested",
+      "location": "northeurope",
+      "properties": {
+        "mode": "Incremental",
+        "template": {
+          "$schema": "https://schema.management.azure.com/schemas/2019-08-01/tenantDeploymentTemplate.json#",
+          "contentVersion": "1.0.0.0",
+          "resources": [
+            {
+              "type": "Microsoft.Management/managementGroups",
+              "apiVersion": "2020-05-01",
+              "name": "eslz-management",
+              "scope": "/",
+              "properties": {
+                "displayName": "eslz-management",
+                "details": {
+                  "parent": {
+                    "id": "/providers/Microsoft.Management/managementGroups/eslz-platform"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Microsoft.Management/managementGroups",
+              "apiVersion": "2020-05-01",
+              "name": "eslz-identity",
+              "scope": "/",
+              "properties": {
+                "displayName": "eslz-identity",
+                "details": {
+                  "parent": {
+                    "id": "/providers/Microsoft.Management/managementGroups/eslz-platform"
+                  }
+                }
+              }
+            },
+            {
+              "type": "Microsoft.Management/managementGroups",
+              "apiVersion": "2020-05-01",
+              "name": "eslz-connectivity",
+              "scope": "/",
+              "properties": {
+                "displayName": "eslz-connectivity",
+                "details": {
+                  "parent": {
+                    "id": "/providers/Microsoft.Management/managementGroups/eslz-platform"
+                  }
+                }
+              }
+            }
+          ],
+          "outputs": {}
+        }
+      },
+      "dependsOn": [
+        "/providers/Microsoft.Management/managementGroups/eslz-platform"
+      ]
+    }
+  ],
+  "outputs": {}
+}

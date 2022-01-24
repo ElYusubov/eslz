@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "AzOps"
+    }
+  },
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/policyAssignments",
+      "name": "OpenSourceRelationalDatabasesProtectionSecurityCenter",
+      "apiVersion": "2021-06-01",
+      "location": null,
+      "properties": {
+        "Scope": "/subscriptions/20c8bd22-71a2-4c9d-be33-d2dab501ea79",
+        "NotScopes": null,
+        "DisplayName": "ASC OpenSourceRelationalDatabasesProtection (subscription: 20c8bd22-71a2-4c9d-be33-d2dab501ea79)",
+        "Description": "This policy assignment was automatically created by Azure Security Center",
+        "EnforcementMode": "Default",
+        "PolicyDefinitionId": "/providers/Microsoft.Authorization/policySetDefinitions/e77fc0b3-f7e9-4c58-bc13-cb753ed8e46e",
+        "Parameters": null,
+        "NonComplianceMessages": null
+      }
+    }
+  ],
+  "outputs": {}
+}
