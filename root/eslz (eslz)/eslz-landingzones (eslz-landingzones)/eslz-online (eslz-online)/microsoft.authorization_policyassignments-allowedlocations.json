@@ -1,0 +1,42 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "AzOps"
+    }
+  },
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Authorization/policyAssignments",
+      "name": "AllowedLocations",
+      "apiVersion": "2021-06-01",
+      "location": "northeurope",
+      "identity": {
+        "PrincipalId": "4d3f42b5-361e-42d4-ac95-3a2145b53d29",
+        "TenantId": "dfb2f2b1-ff74-45e3-8b56-337f9a37f620",
+        "Type": "SystemAssigned"
+      },
+      "properties": {
+        "Scope": "/providers/Microsoft.Management/managementGroups/eslz-online",
+        "NotScopes": null,
+        "DisplayName": "Policy to ringfence Azure regions.",
+        "Description": "Policy to ringfence Azure regions.",
+        "EnforcementMode": "DoNotEnforce",
+        "PolicyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+        "Parameters": {
+          "listOfAllowedLocations": {
+            "value": [
+              "westeurope",
+              "northeurope"
+            ]
+          }
+        },
+        "NonComplianceMessages": null
+      }
+    }
+  ],
+  "outputs": {}
+}
