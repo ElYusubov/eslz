@@ -1,0 +1,113 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "AzOps"
+    }
+  },
+  "parameters": {},
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Network/virtualNetworks",
+      "name": "eslz-hub-centralus",
+      "apiVersion": "2021-06-01",
+      "location": "centralus",
+      "tags": null,
+      "properties": {
+        "addressSpace": {
+          "addressPrefixes": [
+            "10.100.0.0/16"
+          ]
+        },
+        "subnets": [
+          {
+            "name": "GatewaySubnet",
+            "properties": {
+              "addressPrefix": "10.100.1.0/24",
+              "ipConfigurations": [
+                {},
+                {}
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          },
+          {
+            "name": "AzureFirewallSubnet",
+            "properties": {
+              "addressPrefix": "10.100.0.0/24",
+              "ipConfigurations": [
+                {}
+              ],
+              "delegations": [],
+              "privateEndpointNetworkPolicies": "Enabled",
+              "privateLinkServiceNetworkPolicies": "Enabled"
+            },
+            "type": "Microsoft.Network/virtualNetworks/subnets"
+          }
+        ],
+        "virtualNetworkPeerings": [
+          {
+            "name": "71d19c3b-31f3-4d5a-a93d-34feff2a519e-eslz-vnet-centralus",
+            "properties": {
+              "peeringState": "Connected",
+              "peeringSyncLevel": "FullyInSync",
+              "remoteVirtualNetwork": {},
+              "allowVirtualNetworkAccess": true,
+              "allowForwardedTraffic": true,
+              "allowGatewayTransit": true,
+              "useRemoteGateways": false,
+              "doNotVerifyRemoteGateways": false,
+              "peerCompleteVnets": true,
+              "remoteAddressSpace": {
+                "addressPrefixes": [
+                  "10.50.0.0/24"
+                ]
+              },
+              "remoteVirtualNetworkAddressSpace": {
+                "addressPrefixes": [
+                  "10.50.0.0/24"
+                ]
+              },
+              "routeServiceVips": {}
+            },
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+          },
+          {
+            "name": "20c8bd22-71a2-4c9d-be33-d2dab501ea79eslz-vnet-centralus",
+            "properties": {
+              "peeringState": "Connected",
+              "peeringSyncLevel": "FullyInSync",
+              "remoteVirtualNetwork": {},
+              "allowVirtualNetworkAccess": true,
+              "allowForwardedTraffic": true,
+              "allowGatewayTransit": true,
+              "useRemoteGateways": false,
+              "doNotVerifyRemoteGateways": false,
+              "peerCompleteVnets": true,
+              "remoteAddressSpace": {
+                "addressPrefixes": [
+                  "10.110.0.0/24"
+                ]
+              },
+              "remoteVirtualNetworkAddressSpace": {
+                "addressPrefixes": [
+                  "10.110.0.0/24"
+                ]
+              },
+              "routeServiceVips": {}
+            },
+            "type": "Microsoft.Network/virtualNetworks/virtualNetworkPeerings"
+          }
+        ],
+        "enableDdosProtection": true,
+        "ddosProtectionPlan": {}
+      }
+    }
+  ],
+  "outputs": {}
+}
